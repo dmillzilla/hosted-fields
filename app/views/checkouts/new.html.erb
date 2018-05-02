@@ -1,25 +1,40 @@
-<h1 align="center">Welcome</h1>
-<h4 align="center">Join the Masterclass today</h4><hr>
+<script language="Javascript"></script>
+
+<h1 align="center">Join the Masterclass today</h4><hr>
 
 <div class="col-md-8 col-md-offset-2">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4>Sign Up</h4>
+      <h4><strong>Sign Up</strong></h4>
     </div>
     <div class="panel-body">
       <%= form_tag("/checkouts", method: "post", id: "payment-form") do %>
-        <div class="form-group">
+        <div class="form-group col-md-12">
           <label for="first_name">First Name</label>
           <input class="form-control" name="first_name" placeholder="First Name">
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-12">
           <label for="last_name">Last Name</label>
           <input class="form-control" name="last_name" placeholder="Last Name">
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-12">
           <label for="email">Email</label>
           <input class="form-control" type="email" name="email" placeholder="Email">
         </div>
+        
+        <div class="form-group col-md-12">
+          <label for="card-number">Card Number</label>
+          <div id="card-number" class="form-control"></div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="expiration-date">Expiration Date</label>
+          <div id="expiration-date" class="form-control"></div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="cvv">CVV</label>
+          <div id="cvv" class="form-control"></div>
+        </div>
+        
         <div class="col-md-2">
           <%= button_tag(type: :submit, class: "btn btn-default btn-success") do %>
             <i class="fa fa-search"></i> Buy Now
