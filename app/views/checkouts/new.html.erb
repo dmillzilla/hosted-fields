@@ -1,0 +1,19 @@
+<h1 align="center">Welcome</h1>
+<h4 align="center">Sign up for the Masterclass today</h4><hr>
+
+<div class="row">
+  <div class="col-xs-12">
+    <%= form_tag("/checkouts", method: "post", id: "payment-form") do %>
+    
+      <input class="form-control" name="first_name" placeholder="First Name">
+      <input class="form-control" name="last_name" placeholder="Last Name">
+      <input class="form-control" type="email" name="email" placeholder="Email">
+
+      <div class="col-md-2">
+        <%= button_tag(type: :submit, class: "btn btn-lg btn-success") do %>
+          <i class="fa fa-search"></i> Buy Now
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

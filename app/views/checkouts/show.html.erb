@@ -1,0 +1,32 @@
+
+
+<% if @customer %>
+  <h1>Success!</h1>
+<% end %>
+
+<div class="col-md-6">
+  <table class="table table-hover">
+    <tbody>
+      <tr>
+        <th>Customer ID</th>
+        <td><%= @customer.id %></td>
+      </tr>
+      <tr>
+        <th>First Name</th>
+        <td><%= @customer.first_name %></td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td><%= @customer.last_name %></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= @customer.email %></td>
+      </tr>
+      <tr>
+        <th>Created at</th>
+        <td><%= @customer.created_at %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
