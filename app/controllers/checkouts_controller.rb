@@ -4,7 +4,7 @@ class CheckoutsController < ApplicationController
   end
 
   def show
-    @customer = gateway.customer.find(params[:id])
+    @transaction = gateway.transaction.find(params[:id])
   end
   
   def create
@@ -27,7 +27,7 @@ class CheckoutsController < ApplicationController
       )
   
       if result.success?
-        redirect_to checkout_path(customer_creation.customer.id)
+        redirect_to checkout_path(result.transaction.id)
       else
         puts "Error"
         result.errors.each do |error|

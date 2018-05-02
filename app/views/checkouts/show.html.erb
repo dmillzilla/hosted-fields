@@ -1,30 +1,78 @@
-<% if @customer %>
-  <h1>Success!</h1>
-<% end %>
-
-<div class="col-md-6">
-  <table class="table table-hover">
-    <tbody>
-      <tr>
-        <th>Customer ID</th>
-        <td><%= @customer.id %></td>
-      </tr>
-      <tr>
-        <th>First Name</th>
-        <td><%= @customer.first_name %></td>
-      </tr>
-      <tr>
-        <th>Last Name</th>
-        <td><%= @customer.last_name %></td>
-      </tr>
-      <tr>
-        <th>Email</th>
-        <td><%= @customer.email %></td>
-      </tr>
-      <tr>
-        <th>Created at</th>
-        <td><%= @customer.created_at %></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container">
+  <% if @transaction %>
+    <h1>Success</h1>
+  <% end %>
+  
+  <div class="col-md-12">
+    <h1><small>Transaction</small></h1>
+    <div class="col-md-6">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th>Transaction ID</th>
+            <td class="text-right"><%= @transaction.id %></td>
+          </tr>
+          <tr>
+            <th>Amount</th>
+            <td class="text-right">$<%= @transaction.amount %>0 <%= @transaction.currency_iso_code %></td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td class="text-right"><%= @transaction.status.capitalize %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="col-md-12">
+    <h1><small>Customer</small></h1>
+    <div class="col-md-6">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th>First Name</th>
+            <td class="text-right"><%= @transaction.customer_details.first_name %></td>
+          </tr>
+          <tr>
+            <th>Last Name</th>
+            <td class="text-right"><%= @transaction.customer_details.last_name %></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td class="text-right"><%= @transaction.customer_details.email %></td>
+          </tr>
+          <tr>
+            <th>Signed Up At</th>
+            <td class="text-right"><%= @transaction.created_at %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <h1><small>Payment</small></h1>
+    <div class="col-md-6">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th>Token</th>
+            <td class="text-right"><%= @transaction.credit_card_details.token %></td>
+          </tr>
+          <tr>
+            <th>Number</th>
+            <td class="text-right"><%= @transaction.credit_card_details.masked_number %></td>
+          </tr>
+          <tr>
+            <th>Expiration Date</th>
+            <td class="text-right"><%= @transaction.credit_card_details.expiration_date %></td>
+          </tr>
+          <tr>
+            <th>Card Brand</th>
+            <td class="text-right"><%= @transaction.credit_card_details.card_type %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
