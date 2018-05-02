@@ -11,14 +11,29 @@ class CheckoutsController < ApplicationController
     email = params["email"]
     first_name = params["first_name"]
     last_name = params["last_name"]
+    nonce = params["payment_method_nonce"]
     
     customer_creation = gateway.customer.create(
       :email => email,
       :first_name => first_name,
-      :last_name => last_name
+      :last_name => last_name,
+      :payment_method_nonce => nonce
     )
     if customer_creation.success?
-      redirect_to checkout_path(customer_creation.customer.id)
+      token = customer_creation.customer.payment_methods[0].token
+      result = gateway.transaction.sale(
+        :amount => "10",
+        :payment_method_token => token
+      )
+  
+      if result.success?
+        redirect_to checkout_path(customer_creation.customer.id)
+      else
+        puts "Error"
+        result.errors.each do |error|
+          puts error.message
+        end
+      end
     else
       p customer_creation.errors
     end
