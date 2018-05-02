@@ -22,7 +22,7 @@ class CheckoutsController < ApplicationController
     if customer_creation.success?
       token = customer_creation.customer.payment_methods[0].token
       result = gateway.transaction.sale(
-        :amount => "10",
+        :amount => "10.00",
         :payment_method_token => token
       )
   

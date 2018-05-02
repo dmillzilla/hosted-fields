@@ -1,4 +1,4 @@
-<div class="container">
+
   <% if @transaction %>
     <h1>Success</h1>
   <% end %>
@@ -14,7 +14,7 @@
           </tr>
           <tr>
             <th>Amount</th>
-            <td class="text-right">$<%= @transaction.amount %>0 <%= @transaction.currency_iso_code %></td>
+            <td class="text-right">$<%= @transaction.amount.to_i %> <%= @transaction.currency_iso_code %></td>
           </tr>
           <tr>
             <th>Status</th>
@@ -43,8 +43,8 @@
             <td class="text-right"><%= @transaction.customer_details.email %></td>
           </tr>
           <tr>
-            <th>Signed Up At</th>
-            <td class="text-right"><%= @transaction.created_at %></td>
+            <th>Date Added</th>
+            <td class="text-right"><%= @transaction.created_at.strftime("%m/%d/%Y") %></td>
           </tr>
         </tbody>
       </table>
@@ -75,4 +75,3 @@
       </table>
     </div>
   </div>
-</div>
