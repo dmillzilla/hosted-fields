@@ -1,19 +1,31 @@
 <h1 align="center">Welcome</h1>
-<h4 align="center">Sign up for the Masterclass today</h4><hr>
+<h4 align="center">Join the Masterclass today</h4><hr>
 
-<div class="row">
-  <div class="col-xs-12">
-    <%= form_tag("/checkouts", method: "post", id: "payment-form") do %>
-    
-      <input class="form-control" name="first_name" placeholder="First Name">
-      <input class="form-control" name="last_name" placeholder="Last Name">
-      <input class="form-control" type="email" name="email" placeholder="Email">
-
-      <div class="col-md-2">
-        <%= button_tag(type: :submit, class: "btn btn-lg btn-success") do %>
-          <i class="fa fa-search"></i> Buy Now
-        <% end %>
-      </div>
-    <% end %>
+<div class="col-md-8 col-md-offset-2">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4>Sign Up</h4>
+    </div>
+    <div class="panel-body">
+      <%= form_tag("/checkouts", method: "post", id: "payment-form") do %>
+        <div class="form-group">
+          <label for="first_name">First Name</label>
+          <input class="form-control" name="first_name" placeholder="First Name">
+        </div>
+        <div class="form-group">
+          <label for="last_name">Last Name</label>
+          <input class="form-control" name="last_name" placeholder="Last Name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input class="form-control" type="email" name="email" placeholder="Email">
+        </div>
+        <div class="col-md-2">
+          <%= button_tag(type: :submit, class: "btn btn-default btn-success") do %>
+            <i class="fa fa-search"></i> Buy Now
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
