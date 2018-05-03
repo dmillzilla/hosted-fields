@@ -12,6 +12,7 @@ class CheckoutsController < ApplicationController
     first_name = params["first_name"]
     last_name = params["last_name"]
     nonce = params["payment_method_nonce"]
+    amount = params["amount"]
     
     customer_creation = gateway.customer.create(
       :email => email,
@@ -22,17 +23,15 @@ class CheckoutsController < ApplicationController
     if customer_creation.success?
       token = customer_creation.customer.payment_methods[0].token
       result = gateway.transaction.sale(
-        :amount => "10.00",
+        :amount => amount,
         :payment_method_token => token
       )
   
       if result.success?
         redirect_to checkout_path(result.transaction.id)
       else
-        puts "Error"
-        result.errors.each do |error|
-          puts error.message
-        end
+        flash[:danger] = "Try again. The transaction failed with the following error: " + result.message + " (" + result.transaction.processor_response_code + ")"
+        redirect_to root_path
       end
     else
       p customer_creation.errors
