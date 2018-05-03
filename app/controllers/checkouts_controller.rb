@@ -42,9 +42,9 @@ class CheckoutsController < ApplicationController
   def gateway
     gateway = Braintree::Gateway.new(
       :environment => :sandbox,
-      :merchant_id => '235zhthv55dqtgks',
-      :public_key => 'bf4264t9tz94jc8w',
-      :private_key => 'f07777fe3b7287052b9f5f167a1283fc',
+      :merchant_id => ENV["BRAINTREE_MERCHANT_ID"],
+      :public_key => ENV["BRAINTREE_PUBLIC_KEY"],
+      :private_key => ENV["BRAINTREE_PRIVATE_KEY"],
     )
   end
 end
