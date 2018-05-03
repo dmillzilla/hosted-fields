@@ -1,4 +1,5 @@
-$navbar-default-bg: #FFFF33;
+// $navbar-default-bg: #FFFF33;
+$navbar-default-bg: black;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -6,7 +7,8 @@ $navbar-default-bg: #FFFF33;
 #logo {
   float: left;
   font-size: 1.7em;
-  color: #9933ff;
+  // color: #9933ff;
+  color: red;
   text-transform: uppercase;
   letter-spacing: -1px;
   font-weight: bold;
@@ -23,16 +25,17 @@ $navbar-default-bg: #FFFF33;
   color: white;
 }
 
-.btn-primary, .btn-primary:active, .btn-primary:visited {
+.btn-default, .btn-default:active, .btn-default:visited {
   background-color: black !important;
+  color: white !important;
 }
 
-.btn-primary:hover {
+.btn-default:hover {
   background-color: #1a1515 !important;
   color: #e8e8e3 !important;
 }
 
 .table {
-  width: 80%;
+  width: 100%;
 }
 
