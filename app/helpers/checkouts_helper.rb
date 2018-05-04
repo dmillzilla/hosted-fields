@@ -1,2 +1,2 @@
-module CheckoutsHelper
+module CheckoutsHelper #:nodoc:
 end
