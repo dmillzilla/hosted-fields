@@ -1,4 +1,6 @@
 class CheckoutsController < ApplicationController #:nodoc:
+  # before_action :customer_create_params, only: :create
+  
   def new
     @client_token = gateway.client_token.generate
   end
@@ -14,13 +16,14 @@ class CheckoutsController < ApplicationController #:nodoc:
     nonce = params['payment_method_nonce']
     amount = params['amount']
 
-    # customer_creation = gateway.customer.create(
-    #   email: email,
-    #   first_name: first_name,
-    #   last_name: last_name,
-    #   payment_method_nonce: nonce
-    # )
-    customer_creation(email, first_name, last_name, nonce)
+    customer_creation = gateway.customer.create(
+      email: email,
+      first_name: first_name,
+      last_name: last_name,
+      payment_method_nonce: nonce
+    )
+    
+    # customer_creation(email, first_name, last_name, nonce)
 
     if customer_creation.success?
       token = customer_creation.customer.payment_methods[0].token
@@ -42,15 +45,6 @@ class CheckoutsController < ApplicationController #:nodoc:
       redirect_to root_path
     end
   end
-  
-  def customer_creation
-    gateway.customer.create(
-      email: email,
-      first_name: first_name,
-      last_name: last_name,
-      payment_method_nonce: nonce
-    )
-  end
 
   def gateway
     Braintree::Gateway.new(
@@ -60,4 +54,21 @@ class CheckoutsController < ApplicationController #:nodoc:
       private_key: ENV['BRAINTREE_PRIVATE_KEY']
     )
   end
+  
+  # def customer_creation()
+  #   gateway.customer.create(
+  #     email: email,
+  #     first_name: first_name,
+  #     last_name: last_name,
+  #     payment_method_nonce: nonce
+  #   )
+  # end
+  
+  # def customer_create_params
+  #   email = params['email']
+  #   first_name = params['first_name']
+  #   last_name = params['last_name']
+  #   nonce = params['payment_method_nonce']
+  #   amount = params['amount']
+  # end
 end
