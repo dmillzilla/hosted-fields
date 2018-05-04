@@ -23,22 +23,24 @@ class CheckoutsController < ApplicationController #:nodoc:
 
     if customer_creation.success?
       token = customer_creation.customer.payment_methods[0].token
-      result = gateway.transaction.sale(
-        amount: amount,
-        payment_method_token: token
-      )
-
-      if result.success?
-        redirect_to checkout_path(result.transaction.id)
-      else
-        flash[:danger] = 'Try again. The transaction failed with the following
-                         error: ' + result.message + ' (' +
-                         result.transaction.processor_response_code + ')'
-        redirect_to root_path
-      end
     else
       p customer_creation.errors
+    end 
+      
+    result = gateway.transaction.sale(
+      amount: amount,
+      payment_method_token: token
+    )
+
+    if result.success?
+      redirect_to checkout_path(result.transaction.id)
+    else
+      flash[:danger] = 'Try again. The transaction failed with the following
+                       error: ' + result.message + ' (' +
+                       result.transaction.processor_response_code + ')'
+      redirect_to root_path
     end
+    
   end
 
   def gateway
