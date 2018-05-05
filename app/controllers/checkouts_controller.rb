@@ -16,21 +16,21 @@ class CheckoutsController < ApplicationController #:nodoc:
     nonce = params['payment_method_nonce']
     amount = params['amount']
 
-    # customer_creation = gateway.customer.create(
-    #   email: email,
-    #   first_name: first_name,
-    #   last_name: last_name,
-    #   payment_method_nonce: nonce
-    # )
+    customer_creation = gateway.customer.create(
+      email: email,
+      first_name: first_name,
+      last_name: last_name,
+      payment_method_nonce: nonce
+    )
 
-    customer_creation(email, first_name, last_name, nonce)
+    # customer_creation email, first_name, last_name, nonce
 
     if customer_creation.success?
       token = customer_creation.customer.payment_methods[0].token
     else
       p customer_creation.errors
     end
-      
+
     result = gateway.transaction.sale(
       amount: amount,
       payment_method_token: token
@@ -40,8 +40,7 @@ class CheckoutsController < ApplicationController #:nodoc:
       redirect_to checkout_path(result.transaction.id)
     else
       flash[:danger] = 'Try again. The transaction failed with the following
-                       error: ' + result.message + ' (' +
-                       result.transaction.processor_response_code + ')'
+                      error: ' + result.message
       redirect_to root_path
     end
   end
@@ -55,16 +54,22 @@ class CheckoutsController < ApplicationController #:nodoc:
     )
   end
 
-  def customer_creation(email, first_name, last_name, nonce)
-    gateway.customer.create(
-      email: email,
-      first_name: first_name,
-      last_name: last_name,
-      payment_method_nonce: nonce
-    )
-  end
+  # def customer_creation(email, first_name, last_name, nonce)
+  #   customer = gateway.customer.create(
+  #     email: "#{email}",
+  #     first_name: "#{first_name}",
+  #     last_name: "#{last_name}",
+  #     payment_method_nonce: "#{nonce}"
+  #   )
+
+  #   if customer.success?
+  #     token = customer.customer.payment_methods[0].token
+  #   else
+  #     p customer.errors
+  #     redirect_to root_path
+  #   end
+  # end
 
   # def customer_create_params
-    
   # end
 end
