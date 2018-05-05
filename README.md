@@ -5,7 +5,9 @@
 1. Download or clone this Github repo
 
 2. In your terminal, navigate to the root directory and type:
-```$ bundle install --without production```
+```
+$ bundle install --without production
+```
 
 3. Configuration
 
