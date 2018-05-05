@@ -1,6 +1,8 @@
 # Braintree Hosted Fields
 
-##### This is a Braintree Hosted Fields integration example in Ruby.
+This is a Braintree Hosted Fields integration example in Rails.
+
+### Setup
 
 1. Download or clone this Github repo
 
@@ -9,20 +11,14 @@
 $ bundle install --without production
 ```
 
-3. Configuration
+3. In the root directory, create a new file called `.env`. Copy the contents
+   of `example.env` into your new `.env` file.
 
-4. Database creation
+4. Insert your Braintree API credentials into `.env`. You can find your API 
+   credentials by following [these steps](https://articles.braintreepayments.com/control-panel/important-gateway-credentials#api-credentials)
 
-5. Database initialization
+5. Start the rails app:
+```
+rails s
+```
 
-6. How to run the test suite
-
-7. Services (job queues, cache servers, search engines, etc.)
-
-8. Deployment instructions
-
-9. ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
