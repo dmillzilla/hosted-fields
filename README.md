@@ -20,3 +20,14 @@ bundle install --without production
 ```
 rails s
 ```
+
+5. When creating transaction, feel free to use the credit cards referenced in
+   [this Braintree developer doc](https://developers.braintreepayments.com/reference/general/testing/ruby#no-credit-card-errors).
+   You can use any future expiration date and any valid CVV.
+
+### Built With
+
+* [Rails](http://rubyonrails.org/) - The web framework used
+* [Bootstrap](https://getbootstrap.com/) - HTML and CSS framework for styling
+* [RuboCop](https://github.com/bbatsov/rubocop) - Ruby static code analyzer
+* [Braintree](https://braintreepayments.com) - Payment functionality
