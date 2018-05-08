@@ -28,7 +28,7 @@ class CheckoutsController < ApplicationController #:nodoc:
     #   }
     # )
 
-    customer_creation email, first_name, last_name, nonce
+    customer_creation(email, first_name, last_name, nonce)
 
     # if customer_creation.success?
     #   token = customer_creation.customer.payment_methods[0].token
@@ -41,7 +41,7 @@ class CheckoutsController < ApplicationController #:nodoc:
 
     result = gateway.transaction.sale(
       amount: amount,
-      payment_method_token: token
+      payment_method_token: @token
     )
 
     if result.success?
@@ -71,7 +71,7 @@ class CheckoutsController < ApplicationController #:nodoc:
     )
 
     if customer.success?
-      token = customer.customer.payment_methods[0].token
+      @token = customer.customer.payment_methods[0].token
     else
       p customer_creation.errors
       flash[:danger] = 'Transaction error: ' + customer_creation.message
