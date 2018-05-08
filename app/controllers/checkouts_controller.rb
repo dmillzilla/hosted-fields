@@ -30,14 +30,14 @@ class CheckoutsController < ApplicationController #:nodoc:
 
     customer_creation email, first_name, last_name, nonce
 
-    if customer_creation.success?
-      token = customer_creation.customer.payment_methods[0].token
-    else
-      p customer_creation.errors
-      flash[:danger] = 'Transaction error: ' + customer_creation.message
-      redirect_to root_path
-      return
-    end
+    # if customer_creation.success?
+    #   token = customer_creation.customer.payment_methods[0].token
+    # else
+    #   p customer_creation.errors
+    #   flash[:danger] = 'Transaction error: ' + customer_creation.message
+    #   redirect_to root_path
+    #   return
+    # end
 
     result = gateway.transaction.sale(
       amount: amount,
