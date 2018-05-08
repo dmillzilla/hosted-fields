@@ -16,19 +16,19 @@ class CheckoutsController < ApplicationController #:nodoc:
     nonce = params['payment_method_nonce']
     amount = params['amount']
 
-    customer_creation = gateway.customer.create(
-      email: email,
-      first_name: first_name,
-      last_name: last_name,
-      payment_method_nonce: nonce,
-      credit_card: {
-        options: {
-          verify_card: false
-        }
-      }
-    )
+    # customer_creation = gateway.customer.create(
+    #   email: email,
+    #   first_name: first_name,
+    #   last_name: last_name,
+    #   payment_method_nonce: nonce,
+    #   credit_card: {
+    #     options: {
+    #       verify_card: false
+    #     }
+    #   }
+    # )
 
-    # customer_creation email, first_name, last_name, nonce
+    customer_creation email, first_name, last_name, nonce
 
     if customer_creation.success?
       token = customer_creation.customer.payment_methods[0].token
@@ -62,23 +62,23 @@ class CheckoutsController < ApplicationController #:nodoc:
     )
   end
 
-  # def customer_creation(email, first_name, last_name, nonce)
-  #   customer = gateway.customer.create(
-  #     email: "#{email}",
-  #     first_name: "#{first_name}",
-  #     last_name: "#{last_name}",
-  #     payment_method_nonce: "#{nonce}"
-  #   )
+  def customer_creation(email, first_name, last_name, nonce)
+    customer = gateway.customer.create(
+      email: "#{email}",
+      first_name: "#{first_name}",
+      last_name: "#{last_name}",
+      payment_method_nonce: "#{nonce}"
+    )
 
-  #   if customer.success?
-  #     token = customer.customer.payment_methods[0].token
-  #   else
-  #     p customer_creation.errors
-  #     flash[:danger] = 'Transaction error: ' + customer_creation.message
-  #     redirect_to root_path
-  #     return
-  #   end
-  # end
+    if customer.success?
+      token = customer.customer.payment_methods[0].token
+    else
+      p customer_creation.errors
+      flash[:danger] = 'Transaction error: ' + customer_creation.message
+      redirect_to root_path
+      return
+    end
+  end
 
   # def customer_create_params
   # end
