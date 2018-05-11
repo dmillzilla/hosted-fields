@@ -8,7 +8,7 @@ This is a Braintree Hosted Fields integration example in Rails.
 
 2. In your terminal, navigate to the root directory and type:
 ```
-bundle install --without production
+bundle install
 ```
 
 3. In the root directory, create a new file called `.env`. Copy the contents
