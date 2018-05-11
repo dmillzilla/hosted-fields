@@ -48,9 +48,7 @@ class CheckoutsController < ApplicationController #:nodoc:
     if result.success?
       @token = result.customer.payment_methods[0].token
     else
-      p result.errors
-      flash[:danger] = 'Transaction error: ' + result.message
-      redirect_to root_path
+      flash[:danger] = 'Customer Error: ' + result.message
       return
     end
   end
@@ -64,8 +62,7 @@ class CheckoutsController < ApplicationController #:nodoc:
     if result.success?
       redirect_to checkout_path(result.transaction.id)
     else
-      flash[:danger] = 'Try again. The transaction failed with the following
-                      error: ' + result.message
+      flash[:danger] = 'Transaction Error: ' + result.message
       redirect_to root_path
     end
   end

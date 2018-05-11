@@ -47,6 +47,10 @@
           <td class="text-right"><%= @transaction.customer_details.email %></td>
         </tr>
         <tr>
+          <th>Postal Code</th>
+          <td class="text-right"><%= @transaction.billing_details.postal_code %></td>
+        </tr>
+        <tr>
           <th>Date Added</th>
           <td class="text-right"><%= @transaction.created_at.strftime("%m/%d/%Y") %></td>
         </tr>
