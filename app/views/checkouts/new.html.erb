@@ -36,6 +36,10 @@
           <div id="cvv" class="form-control"></div>
         </div>
         <div class="form-group col-md-12">
+          <label for="postal_code">Postal Code</label>
+          <input class="form-control" name="postal_code" placeholder="Postal Code">
+        </div>
+        <div class="form-group col-md-12">
           <label for="amount">Choose Your Donation Amount</label>
           <input class="form-control" name="amount" type="number" min="1" max="5000" placeholder="Amount must be greater than 0">
         </div>
@@ -52,6 +56,7 @@
   $(document).ready(function() {
     var form = document.querySelector('#payment-form');
     var submit = document.querySelector('input[type="submit"]');
+    var tokenizePostalCode = document.querySelector('input[name="postal_code"]').value
   
     braintree.client.create({
       authorization: '<%= @client_token %>'
@@ -99,7 +104,11 @@
         form.addEventListener('submit', function (event) {
           event.preventDefault();
   
-          hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
+          hostedFieldsInstance.tokenize({
+            billing: {
+              postalCode: tokenizePostalCode
+            }
+          }, function (tokenizeErr, payload) {
             if (tokenizeErr) {
               console.error(tokenizeErr);
               return;

@@ -37,7 +37,12 @@ class CheckoutsController < ApplicationController #:nodoc:
       email: email,
       first_name: first_name,
       last_name: last_name,
-      payment_method_nonce: nonce
+      payment_method_nonce: nonce,
+      credit_card: {
+        options: {
+          verify_card: true
+        }
+      }
     )
 
     if result.success?
