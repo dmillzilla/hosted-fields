@@ -11,12 +11,8 @@
     <div class="panel-body">
       <%= form_tag("/checkouts", method: "post", id: "payment-form") do %>
         <div class="form-group col-md-12">
-          <label for="first_name">First Name</label>
-          <input class="form-control" name="first_name" placeholder="First Name">
-        </div>
-        <div class="form-group col-md-12">
-          <label for="last_name">Last Name</label>
-          <input class="form-control" name="last_name" placeholder="Last Name">
+          <label for="cardholder_name">Cardholder Name</label>
+          <input class="form-control" name="cardholder_name" placeholder="Cardholder Name">
         </div>
         <div class="form-group col-md-12">
           <label for="email">Email</label>
@@ -37,7 +33,7 @@
         </div>
         <div class="form-group col-md-12">
           <label for="postal_code">Postal Code</label>
-          <input class="form-control" name="postal_code" placeholder="Postal Code">
+          <div id="postal-code" class="form-control"></div>
         </div>
         <div class="form-group col-md-12">
           <label for="amount">Choose Your Donation Amount</label>
@@ -56,7 +52,7 @@
   $(document).ready(function() {
     var form = document.querySelector('#payment-form');
     var submit = document.querySelector('input[type="submit"]');
-    var tokenizePostalCode = document.querySelector('input[name="postal_code"]');
+    var tokenizeCardholderName = document.querySelector('input[name="cardholder_name"]');
   
     braintree.client.create({
       authorization: '<%= @client_token %>'
@@ -91,6 +87,10 @@
           expirationDate: {
             selector: '#expiration-date',
             placeholder: '02/20'
+          },
+          postalCode: {
+            selector: '#postal-code',
+            placeholder: '12345'
           }
         }
       }, function (hostedFieldsErr, hostedFieldsInstance) {
@@ -105,9 +105,7 @@
           event.preventDefault();
   
           hostedFieldsInstance.tokenize({
-            billingAddress: {
-              postalCode: tokenizePostalCode.value
-            }
+            cardholderName: tokenizeCardholderName.value,
           }, function (tokenizeErr, payload) {
             if (tokenizeErr) {
               console.error(tokenizeErr);

@@ -88,7 +88,6 @@ GEM
     parallel (1.12.1)
     parser (2.5.1.0)
       ast (~> 2.4.0)
-    pg (0.21.0)
     powerpack (0.1.1)
     rack (1.6.10)
     rack-test (0.6.3)
@@ -112,11 +111,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
-    rails_12factor (0.0.3)
-      rails_serve_static_assets
-      rails_stdout_logging
-    rails_serve_static_assets (0.0.5)
-    rails_stdout_logging (0.0.5)
     railties (4.2.10)
       actionpack (= 4.2.10)
       activesupport (= 4.2.10)
@@ -188,9 +182,7 @@ DEPENDENCIES
   dotenv (~> 2.0)
   jbuilder (~> 2.0)
   jquery-rails
-  pg (~> 0.11)
   rails (= 4.2.10)
-  rails_12factor
   rubocop
   sass-rails (>= 3.2)
   sdoc (~> 0.4.0)

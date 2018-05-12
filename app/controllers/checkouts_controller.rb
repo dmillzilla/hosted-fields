@@ -9,12 +9,10 @@ class CheckoutsController < ApplicationController #:nodoc:
 
   def create
     email = params['email']
-    first_name = params['first_name']
-    last_name = params['last_name']
     nonce = params['payment_method_nonce']
     amount = params['amount']
 
-    customer_create(email, first_name, last_name, nonce)
+    customer_create(email, nonce)
 
     token = @token
 
@@ -32,11 +30,9 @@ class CheckoutsController < ApplicationController #:nodoc:
 
   private
 
-  def customer_create(email, first_name, last_name, nonce)
+  def customer_create(email, nonce)
     result = gateway.customer.create(
       email: email,
-      first_name: first_name,
-      last_name: last_name,
       payment_method_nonce: nonce,
       credit_card: {
         options: {

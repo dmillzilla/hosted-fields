@@ -35,12 +35,8 @@
     <table class="table table-hover">
       <tbody>
         <tr>
-          <th>First Name</th>
-          <td class="text-right"><%= @transaction.customer_details.first_name %></td>
-        </tr>
-        <tr>
-          <th>Last Name</th>
-          <td class="text-right"><%= @transaction.customer_details.last_name %></td>
+          <th>Cardholder Name</th>
+          <td class="text-right"><%= @transaction.credit_card_details.cardholder_name %></td>
         </tr>
         <tr>
           <th>Email</th>
