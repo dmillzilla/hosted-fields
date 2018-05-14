@@ -111,8 +111,6 @@
               console.error(tokenizeErr);
               return;
             }
-            // If needed, use this to test nonce creation
-            // console.log('Got a nonce: ' + payload.nonce);
             document.querySelector('input[name="payment_method_nonce"]').value = payload.nonce;
             form.submit();
           });

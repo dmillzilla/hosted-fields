@@ -14,7 +14,11 @@ class CheckoutsController < ApplicationController #:nodoc:
 
     customer_create(email, nonce)
 
-    transaction_sale(amount, @token)
+    if instance_variable_defined?('@token')
+      transaction_sale(amount, @token)
+    else
+      redirect_to root_path
+    end
   end
 
   def gateway
@@ -42,7 +46,7 @@ class CheckoutsController < ApplicationController #:nodoc:
     if result.success?
       @token = result.customer.payment_methods[0].token
     else
-      flash[:danger] = 'Transaction Error: ' + result.message
+      flash[:danger] = 'Payment Method Error: ' + result.message
       return
     end
   end
