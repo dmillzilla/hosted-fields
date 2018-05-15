@@ -35,7 +35,6 @@ them in the nonce.
 
 ### Built With
 
-* [Rails](http://rubyonrails.org/) - The web framework used
-* [Bootstrap](https://getbootstrap.com/) - HTML and CSS framework for styling
-* [RuboCop](https://github.com/bbatsov/rubocop) - Ruby static code analyzer
+* [Rails v4.2.10](http://rubyonrails.org/) - The web framework used
+* [Bootstrap v3.3.7](https://getbootstrap.com/) - HTML and CSS framework for styling
 * [Braintree](https://braintreepayments.com) - Payment functionality
