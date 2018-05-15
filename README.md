@@ -25,7 +25,7 @@ rails s
 
 ### Testing
 
-When creating transaction, feel free to use the credit cards referenced in
+When creating transactions, feel free to use the credit cards referenced in
 [this Braintree developer doc](https://developers.braintreepayments.com/reference/general/testing/ruby#no-credit-card-errors).
 You can use any future expiration date and any valid CVV. I've included a
 Postal Code field for card verification through AVS. You can change your AVS
