@@ -21,9 +21,17 @@ bundle install
 rails s
 ```
 
-5. When creating transaction, feel free to use the credit cards referenced in
-   [this Braintree developer doc](https://developers.braintreepayments.com/reference/general/testing/ruby#no-credit-card-errors).
-   You can use any future expiration date and any valid CVV.
+5. The app should be available on `localhost:3000`
+
+### Testing
+
+When creating transaction, feel free to use the credit cards referenced in
+[this Braintree developer doc](https://developers.braintreepayments.com/reference/general/testing/ruby#no-credit-card-errors).
+You can use any future expiration date and any valid CVV. I've included a
+Postal Code field for card verification through AVS. You can change your AVS
+rules to check for gateway rejections. The card number, expiration, CVV, and
+postal code fields are all Hosted Fields. Cardholder name is tokenized with 
+them in the nonce.
 
 ### Built With
 
